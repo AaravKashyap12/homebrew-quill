@@ -1,0 +1,26 @@
+name: Cask
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: macos-14
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_ANALYTICS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse the cask and install its verified artifact
+        shell: bash
+        run: |
+          brew tap --custom-remote aaravkashyap12/quill "$GITHUB_WORKSPACE"
+          brew info --cask --json=v2 aaravkashyap12/quill/quill
+          mkdir -p "$RUNNER_TEMP/quill-apps"
+          brew install --cask --appdir="$RUNNER_TEMP/quill-apps" aaravkashyap12/quill/quill
+          codesign --verify --deep --strict --all-architectures "$RUNNER_TEMP/quill-apps/Quill.app"
+          architectures="$(lipo -archs "$RUNNER_TEMP/quill-apps/Quill.app/Contents/MacOS/quill")"
+          [[ " $architectures " == *" arm64 "* && " $architectures " == *" x86_64 "* ]]
+          brew uninstall --cask aaravkashyap12/quill/quill
