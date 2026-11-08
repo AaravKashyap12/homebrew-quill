@@ -11,13 +11,13 @@ jobs:
     env:
       HOMEBREW_NO_AUTO_UPDATE: "1"
       HOMEBREW_NO_ANALYTICS: "1"
-      # Keep the one-cask trust decision inside this disposable CI job.
-      XDG_CONFIG_HOME: ${{ runner.temp }}/quill-homebrew-config
     steps:
       - uses: actions/checkout@v4
       - name: Parse the cask and install its verified artifact
         shell: bash
         run: |
+          # Keep the one-cask trust decision inside this disposable CI job.
+          export XDG_CONFIG_HOME="$RUNNER_TEMP/quill-homebrew-config"
           brew tap --custom-remote aaravkashyap12/quill "$GITHUB_WORKSPACE"
           brew trust --cask aaravkashyap12/quill/quill
           brew info --cask --json=v2 aaravkashyap12/quill/quill
