@@ -1,6 +1,6 @@
 cask "quill" do
-  version "0.4.5"
-  sha256 "cad42b2c597eafba877ca9f1c1186b82f7a0a3399c2e80f4e564681382bfd417"
+  version "0.4.6"
+  sha256 "f6075194e724cf67bf8dbd101239bedd20a1b9117fa553086ce81e603eb19bc2"
 
   url "https://github.com/AaravKashyap12/quill/releases/download/v#{version}/Quill-macos-universal.dmg"
   name "Quill"
