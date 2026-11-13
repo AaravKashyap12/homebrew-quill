@@ -11,13 +11,16 @@ With [Homebrew](https://brew.sh) installed:
 brew install --cask aaravkashyap12/quill/quill
 ```
 
-Supports Apple Silicon and Intel Macs running macOS 12 or later. The cask downloads
+The universal artifact targets Apple Silicon and Intel Macs running macOS 12 or
+later. Published Mac builds remain an unsupported engineering preview; see the
+[hardware verification record](https://github.com/AaravKashyap12/quill/blob/main/docs/macos-verification.md). The cask downloads
 a pinned universal DMG from [Quill's GitHub releases](https://github.com/AaravKashyap12/quill/releases)
 and verifies its SHA-256 before installation.
 
 Quill is ad-hoc signed, not Apple-notarized. Homebrew preserves macOS quarantine
-and does not approve permissions. If macOS blocks the first launch, use **System
-Settings → Privacy & Security → Open Anyway** for Quill. In Quill, allow the
+and does not approve permissions. If macOS blocks a trusted download, follow
+[Apple’s per-app opening instructions](https://support.apple.com/en-us/102445)
+for your macOS version. Do not disable Gatekeeper. In Quill, allow the
 microphone to record and Accessibility to insert into your chosen editor. Cloud
 keys are optional and remain in your OS credential store.
 
