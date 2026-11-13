@@ -14,7 +14,10 @@ cask "quill" do
 
   caveats <<~EOS
     Quill is currently ad-hoc signed, not Apple-notarized.
-    If macOS blocks the first launch, use System Settings > Privacy & Security > Open Anyway.
+    Published Mac builds remain an unsupported engineering preview.
+    If macOS blocks a trusted download, follow Apple's per-app instructions for your macOS version:
+      https://support.apple.com/en-us/102445
+    Do not disable Gatekeeper.
     Quill needs Microphone access to record and Accessibility access to insert text.
     Homebrew does not grant these permissions or change macOS security settings.
   EOS
